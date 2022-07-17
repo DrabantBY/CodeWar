@@ -12,6 +12,7 @@ Cat.averageWeight(); // 25
 
 felix = new Cat('felix', 15);
 Cat.averageWeight();   // now 20
+
 But that's not all. Cats can change weight. Use Object.defineProperty to write custom setters and getters 
 for the weight property so that the following works properly even as instances change their weight value:
 
@@ -35,7 +36,7 @@ Summary of requirements:
   4. Must use Object.defineProperty
 
 
-  Solutions:
+Solutions:
 
 const Cat = (function () {
   

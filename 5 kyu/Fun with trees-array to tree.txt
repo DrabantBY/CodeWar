@@ -1,0 +1,39 @@
+DESCRIPTION:
+
+You are given a non-null array of integers. Implement the method arrayToTree which creates a binary tree 
+from its values in accordance to their order, while creating nodes by depth from left to right.
+
+For example, given the array [17, 0, -4, 3, 15] you should create the following tree:
+
+    17
+   /  \
+  0   -4
+ / \
+3   15 
+
+The class TreeNode is available for you:
+
+var TreeNode = function(value, left, right) {
+  this.value = value;
+  this.left = left;
+  this.right = right;
+};
+
+This kata is part of fun with trees series:
+    -Fun with trees: max sum
+    -Fun with trees: array to tree
+    -Fun with trees: is perfect
+
+
+Solutions:
+
+function arrayToTree(arr) {
+  arr = arr.map( el => new TreeNode(el) );
+  arr.forEach( (el, i) => (el.left = arr[2 * i + 1]) && (el.right = arr[2 * i + 2]) );
+  return arr[0]; 
+};
+
+function arrayToTree(arr, i = 0) {
+  if( i >= arr.length ) return;
+  return new TreeNode( arr[i], arrayToTree(arr, 2 * i + 1), arrayToTree(arr, 2 * i + 2) );
+};
