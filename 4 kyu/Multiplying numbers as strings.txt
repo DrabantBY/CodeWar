@@ -1,0 +1,46 @@
+DESCRIPTION:
+
+This is the first part. 
+You can solve the second part here when you are done with this. 
+Multiply two numbers! Simple!
+
+    1.The arguments are passed as strings.
+    2.The numbers may be way very large
+    3.Answer should be returned as a string
+    4.The returned "number" should not start with zeros e.g. 0123 is invalid
+
+Note: 100 randomly generated tests!
+
+
+Solutions:
+
+function multiply(a, b) {
+  if(/^0+$/.test(a) || /^0+$/.test(b)) return '0';
+  
+  let fArr = a.replace(/^0+/, '').split('').reverse();
+  let sArr = b.replace(/^0+/, '').split('').reverse();
+  const result = [];
+
+  for(let i = 0; i < fArr.length; i++) {
+    for(let j = 0; j < sArr.length; j++) {
+        result[i + j] = (result[i + j] ?? 0) + fArr[i] * sArr[j];
+    }
+  }
+
+  for(let i = 0; i < result.length; i++) {
+    let int = Math.floor(result[i] / 10);
+    result[i] = result[i] % 10;
+
+    if(result[i + 1]) {
+        result[i + 1] += int;
+    } else if(int) {
+        result[i + 1] = int;
+    }
+  }
+  
+  return result.reverse().join('');
+}
+
+*************************************************************************
+
+const multiply = (a, b) => (BigInt(a) * BigInt(b)).toString();

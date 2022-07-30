@@ -1,0 +1,25 @@
+DESCRIPTION:
+
+Given a curried function calculate its uncurried version.
+
+For example:
+
+const curriedAdd = x => y => z => x + y + z;
+
+curriedAdd(1)(2)(3); // 6
+
+const uncurriedAdd = uncurry(curriedAdd);
+
+uncurriedAdd(1, 2, 3); // 6
+
+Note: Before solving this kata is highly recommended to have solved this one
+
+
+Solutions:
+
+const uncurry = f => (...args) => {
+  while (typeof f === 'function' && args.length >= f.length) {
+    f = f(...args.splice(0, f.length));
+  }
+  return f;
+};
