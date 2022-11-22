@@ -1,0 +1,24 @@
+DESCRIPTION:
+
+Return please the common directory path for specified array of full filenames.
+
+Some details:
+
+   ['/dream/images/image1.png', '/dream/images/image2.png']  => '/dream/images/'
+   ['/http/assets/style.css', '/https/scripts/app.js',  'home/setting.conf'] => ''
+   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
+   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
+
+
+Solutions:
+
+function getCommonDirectoryPath(paths) {
+  const size = Math.min(...paths.map(path => path.length));
+  const result = [];
+  for (let i = 0; i < size; i++) {
+    if(paths.every(path => paths[0][i] === path[i])) {
+      result.push(paths[0][i]);
+    } else break;
+  }
+  return result.join('').replace(/[\w\d.]+$/, '');
+}
